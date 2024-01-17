@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+canvas {
+    width: 95%;
+    height: auto;
+    border: 1px solid #ddd;
+    display: block;
+}
+
+input, h1 {
+    position: fixed;
+    left: 2.5%;
+    bottom: 2.5%;
+}
+
+h1 {
+    color: whitesmoke;
+    padding: 0;
+    margin: 0;
+    bottom: 7.5%;
+}
