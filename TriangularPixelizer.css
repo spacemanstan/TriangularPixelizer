@@ -15,15 +15,17 @@ canvas {
     display: block;
 }
 
-input, h1 {
+.controlsContainer {
     position: fixed;
-    left: 2.5%;
-    bottom: 2.5%;
-}
-
-h1 {
-    color: whitesmoke;
-    padding: 0;
-    margin: 0;
-    bottom: 7.5%;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f8f8;
+    padding: 0.3rem;
+    margin: 0.75rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
