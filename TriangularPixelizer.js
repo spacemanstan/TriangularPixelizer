@@ -7,11 +7,11 @@ function setup() {
 
   frameRate(12);
 
-  // img = loadImage('assets/gogh-self-portrait.jpg');
-  img = loadImage('assets/gogh-sunflower.jpg');
+  img = loadImage('assets/gogh-self-portrait.jpg');
+  // img = loadImage('assets/gogh-sunflower.jpg');
 
-  imgDim = [17, 25];
-  // imgDim = [3, 5];
+  // imgDim = [17, 25];
+  imgDim = [6, 9];
 
 
   calcUnits();
