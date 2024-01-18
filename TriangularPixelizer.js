@@ -1,20 +1,26 @@
 let img, imgSize, imgDim;
+let imgColours;
 let pixelSize, unit;
 let backCorners = [4];
+
+function preload() {
+  // img = loadImage('assets/gogh-self-portrait.jpg');
+  img = loadImage('assets/gogh-sunflower.jpg');
+}
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
 
   frameRate(12);
 
-  // img = loadImage('assets/gogh-self-portrait.jpg');
-  img = loadImage('assets/gogh-sunflower.jpg');
+  imgLoaded = false;
 
   imgDim = [17, 25];
   // imgDim = [3, 5];
 
-
   calcUnits();
+  calcColours();
 
   rectMode(CORNERS);
 }
@@ -26,11 +32,7 @@ function draw() {
 
   for (let imgX = 0; imgX < imgDim[0]; ++imgX) {
     for (let imgY = 0; imgY < imgDim[1]; ++imgY) {
-      let xOff = int((img.width / imgDim[0]) * imgX);
-      let yOff = int((img.height / imgDim[1]) * imgY);
-      let imgColour = img.get(xOff, yOff);
-
-      fill(imgColour);
+      fill(imgColours[imgX * imgDim[1] + imgY]);
       noStroke();
 
       push();
@@ -75,33 +77,52 @@ function calcUnits() {
 }
 
 function renderTriPrism() {
-  // side top
-  beginShape();
+  // triangle is facing left with raise side on right
+  beginShape(TRIANGLE_STRIP);
+  // tri top
+  vertex(unit, -unit, 0);
   vertex(-unit, -unit, 0);
-  vertex(unit, -unit, 0);
   vertex(unit, -unit, unit);
-  endShape(CLOSE);
 
-  // side bottom
-  beginShape();
-  vertex(-unit, unit, 0);
-  vertex(unit, unit, 0);
-  vertex(unit, unit, unit);
-  endShape(CLOSE);
-
-  // side right
-  beginShape();
-  vertex(unit, -unit, unit);
-  vertex(unit, -unit, 0);
-  vertex(unit, unit, 0);
-  vertex(unit, unit, unit);
-  endShape(CLOSE);
-
-  // top face
-  beginShape();
+  // face front top
   vertex(-unit, -unit, 0);
   vertex(unit, -unit, unit);
   vertex(unit, unit, unit);
+
+  // face front bottom
+  vertex(-unit, -unit, 0);
   vertex(-unit, unit, 0);
+  vertex(unit, unit, unit);
+
+  // tri bottom
+  vertex(unit, unit, unit);
+  vertex(-unit, unit, 0);
+  vertex(unit, unit, 0);
+
+  // face right top
+  vertex(unit, unit, 0);
+  vertex(unit, unit, unit);
+  vertex(unit, -unit, unit);
+
+  // face right bottom
+  vertex(unit, -unit, unit);
+  vertex(unit, unit, 0);
+  vertex(unit, -unit, 0);
+  
   endShape(CLOSE);
+}
+
+function calcColours() {
+  imgColours = new Array(imgDim[0] * imgDim[1]);
+
+  for (let imgX = 0; imgX < imgDim[0]; ++imgX) {
+    for (let imgY = 0; imgY < imgDim[1]; ++imgY) {
+      let xOff = floor((img.width / imgDim[0]) * imgX);
+      let yOff = floor((img.height / imgDim[1]) * imgY);
+
+      let imgColour = img.get(xOff, yOff);
+
+      imgColours[imgX * imgDim[1] + imgY] = imgColour;
+    }
+  }
 }
