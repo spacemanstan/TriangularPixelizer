@@ -7,9 +7,12 @@ function setup() {
 
   frameRate(12);
 
-  img = loadImage('assets/gogh-self-portrait.jpg');
+  // img = loadImage('assets/gogh-self-portrait.jpg');
+  img = loadImage('assets/gogh-sunflower.jpg');
 
   imgDim = [17, 25];
+  // imgDim = [3, 5];
+
 
   calcUnits();
 
@@ -44,24 +47,14 @@ function draw() {
 
       renderTriPrism();
 
-      // this back corners code is really dumb
-      // but p5js is more dumb and it is the only thing that sizes it right for some reason 
-      let first = (imgX == 0 && imgY == 0);
-      let last = (imgX == imgDim[0] - 1 && imgY == imgDim[1] - 1);
-
-      if (first) {
-        backCorners[0] = (-imgSize[0] / 2) + imgX * pixelSize - unit;
-        backCorners[1] = (-imgSize[1] / 2) + imgY * pixelSize - unit;
-      }
-
-      if (last) {
-        backCorners[2] = (-imgSize[0] / 2) + imgX * pixelSize + unit;
-        backCorners[3] = (-imgSize[1] / 2) + imgY * pixelSize + unit;
-      }
-
       pop();
     }
   }
+
+  backCorners[0] = (-imgSize[0] / 2) + 0 * pixelSize - unit;
+  backCorners[1] = (-imgSize[1] / 2) + 0 * pixelSize - unit;
+  backCorners[2] = (-imgSize[0] / 2) + imgDim[0] * pixelSize - unit;
+  backCorners[3] = (-imgSize[1] / 2) + imgDim[1] * pixelSize - unit;
 
   fill(51, 37, 32);
   stroke(74, 51, 42);
