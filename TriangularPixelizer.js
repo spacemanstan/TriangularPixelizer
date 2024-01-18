@@ -13,7 +13,6 @@ function setup() {
   // imgDim = [17, 25];
   imgDim = [6, 9];
 
-
   calcUnits();
 
   rectMode(CORNERS);
@@ -23,6 +22,9 @@ function draw() {
   background(0);
 
   orbitControl();
+
+  // fill(255)
+  // renderTriPrism();
 
   for (let imgX = 0; imgX < imgDim[0]; ++imgX) {
     for (let imgY = 0; imgY < imgDim[1]; ++imgY) {
@@ -75,33 +77,37 @@ function calcUnits() {
 }
 
 function renderTriPrism() {
-  // side top
-  beginShape();
+  // triangle is facing left with raise side on right
+  beginShape(TRIANGLE_STRIP);
+  // tri top
+  vertex(unit, -unit, 0);
   vertex(-unit, -unit, 0);
-  vertex(unit, -unit, 0);
   vertex(unit, -unit, unit);
-  endShape(CLOSE);
 
-  // side bottom
-  beginShape();
-  vertex(-unit, unit, 0);
-  vertex(unit, unit, 0);
-  vertex(unit, unit, unit);
-  endShape(CLOSE);
-
-  // side right
-  beginShape();
-  vertex(unit, -unit, unit);
-  vertex(unit, -unit, 0);
-  vertex(unit, unit, 0);
-  vertex(unit, unit, unit);
-  endShape(CLOSE);
-
-  // top face
-  beginShape();
+  // face front top
   vertex(-unit, -unit, 0);
   vertex(unit, -unit, unit);
   vertex(unit, unit, unit);
+
+  // face front bottom
+  vertex(-unit, -unit, 0);
   vertex(-unit, unit, 0);
+  vertex(unit, unit, unit);
+
+  // tri bottom
+  vertex(unit, unit, unit);
+  vertex(-unit, unit, 0);
+  vertex(unit, unit, 0);
+
+  // face right top
+  vertex(unit, unit, 0);
+  vertex(unit, unit, unit);
+  vertex(unit, -unit, unit);
+
+  // face right bottom
+  vertex(unit, -unit, unit);
+  vertex(unit, unit, 0);
+  vertex(unit, -unit, 0);
+  
   endShape(CLOSE);
 }
