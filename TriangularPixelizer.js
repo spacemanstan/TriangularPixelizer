@@ -8,7 +8,6 @@ function preload() {
   // img = loadImage('assets/gogh-sunflower.jpg');
 }
 
-
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
 
@@ -63,8 +62,6 @@ function renderImgBg() {
 }
 
 function renderTriangularImg() {
-  // push();
-
   // move to top left corner
   translate(
     ((-imgSize[0] / 2) - pixelSize),
@@ -92,8 +89,6 @@ function renderTriangularImg() {
     // Translate to the next row
     translate(-pixelSize * imgDim[0], pixelSize, 0);
   }
-
-  // pop();
 }
 
 
