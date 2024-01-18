@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triangular Pixelizer</title>
+  <!-- my stylesheet -->
+  <link rel="stylesheet" href="TriangularPixelizer.css">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <!-- Displayed if JavaScript is disabled -->
+  <noscript>
+    <div id="noJsMessage">
+      JavaScript is required to view this content.
+    </div>
+  </noscript>
+
+  <!-- Include p5.js with error handling -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js" onerror="handleP5Error()"></script>
+
+  <!-- Include TriangularPixelizer.js with error handling -->
+  <script src="TriangularPixelizer.js" onerror="handleJSFileError()"></script>
+
+  <!-- JavaScript section -->
+  <script>
+    // Function to handle p5.js loading error
+    function handleP5Error() {
+      // Display an error message if p5.js fails to load
+      document.getElementById('noJsMessage').innerText = 'Error loading p5.js. Please try again later.';
+      document.getElementById('noJsMessage').style.display = 'block';
+    }
+
+    // Function to handle TriangularPixelizer.js loading error
+    function handleJSFileError() {
+      // Display an error message if TriangularPixelizer.js fails to load
+      document.getElementById('noJsMessage').innerText = 'Error loading TriangularPixelizer.js. Please try again later.';
+      document.getElementById('noJsMessage').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
