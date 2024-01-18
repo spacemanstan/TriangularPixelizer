@@ -1,19 +1,26 @@
 let img, imgSize, imgDim;
+let imgColours;
 let pixelSize, unit;
 let backCorners = [4];
+
+function preload() {
+  // img = loadImage('assets/gogh-self-portrait.jpg');
+  img = loadImage('assets/gogh-sunflower.jpg');
+}
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
 
   frameRate(12);
 
-  // img = loadImage('assets/gogh-self-portrait.jpg');
-  img = loadImage('assets/gogh-sunflower.jpg');
+  imgLoaded = false;
 
   imgDim = [17, 25];
   // imgDim = [3, 5];
 
   calcUnits();
+  calcColours();
 
   rectMode(CORNERS);
 }
@@ -23,16 +30,9 @@ function draw() {
 
   orbitControl();
 
-  // fill(255)
-  // renderTriPrism();
-
   for (let imgX = 0; imgX < imgDim[0]; ++imgX) {
     for (let imgY = 0; imgY < imgDim[1]; ++imgY) {
-      let xOff = int((img.width / imgDim[0]) * imgX);
-      let yOff = int((img.height / imgDim[1]) * imgY);
-      let imgColour = img.get(xOff, yOff);
-
-      fill(imgColour);
+      fill(imgColours[imgX * imgDim[1] + imgY]);
       noStroke();
 
       push();
@@ -110,4 +110,19 @@ function renderTriPrism() {
   vertex(unit, -unit, 0);
   
   endShape(CLOSE);
+}
+
+function calcColours() {
+  imgColours = new Array(imgDim[0] * imgDim[1]);
+
+  for (let imgX = 0; imgX < imgDim[0]; ++imgX) {
+    for (let imgY = 0; imgY < imgDim[1]; ++imgY) {
+      let xOff = floor((img.width / imgDim[0]) * imgX);
+      let yOff = floor((img.height / imgDim[1]) * imgY);
+
+      let imgColour = img.get(xOff, yOff);
+
+      imgColours[imgX * imgDim[1] + imgY] = imgColour;
+    }
+  }
 }
